@@ -1,0 +1,25 @@
+class Solution:
+    def mctFromLeafValues(self, arr: List[int]) -> int:
+        res = 0
+        stack = []
+        
+        for x in arr:
+            while len(stack) and stack[-1] <= x:
+                mini = stack.pop() # minimum element of the 3 elements stack[-1], stack[-2] and x
+                
+                if stack: # if stack has any item left
+                    res +=  mini * min(x, stack[-1])
+                else:
+                    res += mini * x
+            
+            stack.append(x)
+        
+        # process the remaining items
+        y = stack.pop()
+        
+        while len(stack):
+            z = stack.pop()
+            res += y * z
+            y = z
+        
+        return res

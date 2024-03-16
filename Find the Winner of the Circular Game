@@ -1,0 +1,17 @@
+class Solution:
+    def findTheWinner(self, n: int, k: int) -> int:
+        i =1
+        lst =[]
+        while i < n+1:
+            lst.append(i)
+            i += 1
+        curindex =0
+            
+        while True:
+            if len(lst) == 1:
+                break
+            i =(curindex +k-1) % len(lst)
+            lst.remove(lst[i])
+            curindex = i% len(lst)
+        return lst[0]    
+        
